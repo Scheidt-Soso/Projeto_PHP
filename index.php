@@ -12,11 +12,32 @@ echo "5-Remover". "\n";
 echo "0-Sair". "\n";
 
 $opcao = readline("Escolha");
+
+
+switch($opcao){
+case 1 :
+    "Cadastrar livro($livros)";
+    break;
+
+case 2:
+   "Listar Livros($livros)";
+    break;
+
+case 3:
+    echo "Buscar Livro\n";
+    break;
+
+case 0:
+    exit;
+
+    default:
+    echo "Opçãp Inválida\n";
+}
+
 }
 
 
-echo "\nMenu\n";
+//echo "\nMenu\n";
  
-
 
 ?>
