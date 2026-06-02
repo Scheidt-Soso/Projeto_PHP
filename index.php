@@ -1,43 +1,44 @@
 <?php
-require "dados.php";
-require "livros.php";
 
-while (true){
+require_once "menu.php";
+require_once "livros.php";
 
-echo "1-Cadastrar um livro"."\n";
-echo "2-Listar ". "\n";
-echo "3-Buscar" . "\n";
-echo "4-Editar". "\n";
-echo "5-Remover". "\n";
-echo "0-Sair". "\n";
+$livros = [];
 
-$opcao = readline("Escolha");
+do {
 
+    exibirMenu();
 
-switch($opcao){
-case 1 :
-    "Cadastrar livro($livros)";
-    break;
+    $opcao = trim(fgets(STDIN));
 
-case 2:
-   "Listar Livros($livros)";
-    break;
+    switch ($opcao) {
 
-case 3:
-    echo "Buscar Livro\n";
-    break;
+        case 1:
+            echo "\nCadastrar livro\n";
+            break;
 
-case 0:
-    exit;
+        case 2:
+            echo "\nListar livros\n";
+            break;
 
-    default:
-    echo "Opçãp Inválida\n";
-}
+        case 3:
+            echo "\nBuscar livro\n";
+            break;
 
-}
+        case 4:
+            echo "\nEditar livro\n";
+            break;
 
+        case 5:
+            echo "\nRemover livro\n";
+            break;
 
-//echo "\nMenu\n";
- 
+        case 0:
+            echo "\nSaindo...\n";
+            break;
 
-?>
+        default:
+            echo "\nOpção inválida!\n";
+    }
+
+} while ($opcao != 0);

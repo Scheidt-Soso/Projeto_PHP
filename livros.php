@@ -1,17 +1,25 @@
 <?php
 
-function cadastrarLivro($livros){
-    echo "\nCadastrar Livro\n";
+function cadastrarLivro(&$livros)
+{
+    echo "Título: ";
+    $titulo = trim(fgets(STDIN));
 
+    echo "Autor: ";
+    $autor = trim(fgets(STDIN));
 
-    $titulo = readline ("Título: ");
-    $autor = readline ("Autor:");
-    $paginas = readline ("Páginas");
+    echo "Número de páginas: ";
+    $paginas = (int) trim(fgets(STDIN));
 
+    echo "Lido? (s/n): ";
+    $lido = strtolower(trim(fgets(STDIN)));
+
+    $livros[] = [
+        "titulo" => $titulo,
+        "autor" => $autor,
+        "paginas" => $paginas,
+        "lido" => ($lido == "s")
+    ];
+
+    echo "\nLivro cadastrado com sucesso!\n";
 }
-function listarLivros($livros){
-    echo "\nListar Livros\n";
-}
-//https://openlibrary.org/search.json?q=harry+potter&utm_source=chatgpt.com, usar esse caso de erro 
-//https://developers.google.com/books/docs/overview?hl=pt-br usar para integrar a api no php, para não ficar listando dms os livros
-?>
