@@ -1,5 +1,4 @@
 <?php
-
 function cadastrarLivro(&$livros)
 {
     echo "Título: ";
@@ -11,15 +10,14 @@ function cadastrarLivro(&$livros)
     echo "Número de páginas: ";
     $paginas = (int) trim(fgets(STDIN));
 
-    echo "Lido? (s/n): ";
-    $lido = strtolower(trim(fgets(STDIN)));
-
     $livros[] = [
+        "id" => count($livros) + 1,
         "titulo" => $titulo,
         "autor" => $autor,
         "paginas" => $paginas,
-        "lido" => ($lido == "s")
+        "status" => "Quero Ler",
+        "nota" => 0
     ];
 
     echo "\nLivro cadastrado com sucesso!\n";
-}
+}?>
