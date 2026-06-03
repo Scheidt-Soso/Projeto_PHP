@@ -12,12 +12,5 @@ function exibirMenu() {
     echo "Escolha uma opção: ";
 }
 
-function exibirMenuEditar() {
-    echo "\n=== EDITAR LIVRO ===\n";
-    echo "1 - Alterar status\n";
-    echo "2 - Alterar nota\n";
-    echo "0 - Voltar\n";
-    echo "Escolha uma opção: ";
-}
 
 ?>

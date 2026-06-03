@@ -61,36 +61,20 @@
             "spa"
         ],
         "public_scan_b": false,
-        "title": "Hunting Prince Dracula",
-        "lido": false
-    },
-    {
-        "author_key": [
-            "OL7524305A"
-        ],
-        "author_name": [
-            "Kerri Maniscalco"
-        ],
-        "cover_edition_key": "OL27379181M",
-        "cover_i": 8842423,
-        "ebook_access": "no_ebook",
-        "edition_count": 9,
-        "first_publish_year": 2017,
-        "has_fulltext": false,
-        "key": "\/works\/OL19717210W",
-        "language": [
-            "ger",
-            "eng",
-            "spa"
-        ],
-        "public_scan_b": false,
         "title": "Hunting Prince Dracula"
     },
     {
-        "id": "6a1f863ab07b5",
-        "titulo": "Draculias",
-        "autor": "eu",
-        "paginas": 90,
+        "id": "6a1f82ba6a52d",
+        "titulo": "The Sea of Monsters",
+        "autor": "Rick Riordan",
+        "paginas": 0,
         "lido": true
+    },
+    {
+        "id": "6a203164c48a1",
+        "titulo": "draqui",
+        "autor": "ue",
+        "paginas": 89,
+        "lido": false
     }
 ]
