@@ -8,99 +8,111 @@ require_once "api-OpenL.php";
 
 $livros = carregarLivros();
 
+
+foreach ($livros as &$livro) {
+    $livro['lido'] = filter_var($livro['lido'], FILTER_VALIDATE_BOOLEAN);
+}
+
 do {
 
     exibirMenu();
 
-    $opcao = (int) trim(fgets(STDIN));
+   $opcao = lerInput("Escolha uma opção: ");
+
+if ($opcao === "") {
+    echo "Opcao vazia nao permitida.\n";
+    continue;
+}
+
+if (!is_numeric($opcao)) {
+    echo "Digite apenas números.\n";
+    continue;
+}
+
+$opcao = (int)$opcao;
 
     switch ($opcao) {
 
         case 1:
 
-    echo "\nDigite o nome do livro: ";
-    $pesquisa = trim(fgets(STDIN));
+            $pesquisa = lerInput("Digite o nome do livro: ");
 
-    $resultados = pesquisarOpenLibrary($pesquisa);
+            if ($pesquisa === "") {
+                echo "Busca vazia nao permitida.\n";
+                break;
+            }
 
-    if (empty($resultados)) {
-        echo "\nNenhum livro encontrado.\n";
-        break;
-    }
+            $resultados = pesquisarOpenLibrary($pesquisa);
 
-    $opcoes = array_slice($resultados, 0, 5);
+            if (empty($resultados)) {
+                echo "Nenhum livro encontrado.\n";
+                break;
+            }
 
-    foreach ($opcoes as $indice => $livro) {
+            $opcoes = array_slice($resultados, 0, 5);
 
-        echo "\n[" . $indice . "] === LIVRO ===\n";
+            foreach ($opcoes as $indice => $livro) {
 
-        $titulo = $livro['title'] ?? 'Não informado';
-        $autor = $livro['author_name'][0] ?? 'Autor desconhecido';
+                echo "\n[$indice] === LIVRO ===\n";
 
-        echo "Título: $titulo\n";
-        echo "Autor: $autor\n";
-    }
+                echo "Título: " . ($livro['title'] ?? 'Não informado') . "\n";
+                echo "Autor: " . ($livro['author_name'][0] ?? 'Autor desconhecido') . "\n";
+            }
 
-    echo "\nDigite o número do livro que deseja adicionar à biblioteca: ";
-    $escolha = (int) trim(fgets(STDIN));
+            $escolha = (int) lerInput("\nDigite o número do livro: ");
 
-    if (!isset($opcoes[$escolha])) {
-        echo "\nOpção inválida.\n";
-        break;
-    }
+            if (!isset($opcoes[$escolha])) {
+                echo "Opção inválida.\n";
+                break;
+            }
 
-    $selecionado = $opcoes[$escolha];
+            $selecionado = $opcoes[$escolha];
 
-    $livros[] = [
-        "titulo" => $selecionado['title'] ?? 'Sem título',
-        "autor" => $selecionado['author_name'][0] ?? 'Desconhecido',
-        "paginas" => 0,
-        "lido" => false
-    ];
+            $lidoInput = lerInput("Você já leu esse livro? (1 sim / 0 nao): ");
 
-    salvarLivros($livros);
+            $livros[] = [
+                "id" => uniqid(),
+                "titulo" => $selecionado['title'] ?? 'Sem título',
+                "autor" => $selecionado['author_name'][0] ?? 'Desconhecido',
+                "paginas" => 0,
+                "lido" => ($lidoInput === "1")
+            ];
 
-    echo "\nLivro adicionado à biblioteca com sucesso!\n";
+            salvarLivros($livros);
 
-    break;
+            echo "Livro adicionado com sucesso!\n";
+
+            break;
 
         case 2:
-
             minhaBiblioteca($livros);
             break;
 
         case 3:
-
             buscarLivro($livros);
             break;
 
         case 4:
-
             editarLivro($livros);
             salvarLivros($livros);
             break;
 
         case 5:
-
             removerLivro($livros);
             salvarLivros($livros);
             break;
 
         case 6:
-
             estatisticas($livros);
             break;
 
         case 0:
-
-            echo "\nSaindo...\n";
+            salvarLivros($livros);
+            echo "Saindo...\n";
             break;
 
         default:
-
-            echo "\nOpção inválida!\n";
+            echo "Opcao invalida!\n";
     }
 
 } while ($opcao != 0);
-
-?>

@@ -1,5 +1,7 @@
 <?php
 
+require_once "dados.php";
+
 function cadastrarLivro(&$livros)
 {
     echo "Título: ";
@@ -11,19 +13,22 @@ function cadastrarLivro(&$livros)
     echo "Número de páginas: ";
     $paginas = (int) trim(fgets(STDIN));
 
+    echo "Você já leu esse livro? (1 sim / 0 nao): ";
+    $lidoInput = trim(fgets(STDIN));
+
     $livros[] = [
-        "id" => count($livros) + 1,
+        "id" => uniqid(),
         "titulo" => $titulo,
         "autor" => $autor,
         "paginas" => $paginas,
-        "status" => "Quero Ler",
-        "nota" => 0
+        "lido" => ($lidoInput === "1")
     ];
 
     salvarLivros($livros);
 
     echo "\nLivro cadastrado com sucesso!\n";
 }
+
 
 function listarLivros($livros)
 {
@@ -32,9 +37,7 @@ function listarLivros($livros)
         return;
     }
 
-    usort($livros, function ($a, $b) {
-        return strcmp($a['titulo'], $b['titulo']);
-    });
+    usort($livros, fn($a, $b) => strcmp($a['titulo'], $b['titulo']));
 
     foreach ($livros as $livro) {
 
@@ -43,9 +46,6 @@ function listarLivros($livros)
         echo "Título: {$livro['titulo']}\n";
         echo "Autor: {$livro['autor']}\n";
         echo "Páginas: {$livro['paginas']}\n";
-        echo "Status: {$livro['status']}\n";
-        echo "Nota: {$livro['nota']}\n";
+        echo "Status: " . ($livro['lido'] ? "Lido" : "Nao lido") . "\n";
     }
-    
-    
 }

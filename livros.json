@@ -1,1 +1,96 @@
-[]
+[
+    {
+        "id": "6a1f7671a67b6",
+        "titulo": "Dom Casmurro",
+        "autor": "Machado de Assís",
+        "paginas": 0,
+        "lido": false
+    },
+    {
+        "id": "6a1f7972e2b48",
+        "titulo": "Harry Potter and the Philosopher's Stone",
+        "autor": "J. K. Rowling",
+        "paginas": 0,
+        "lido": false
+    },
+    {
+        "id": "6a1f7a35095df",
+        "titulo": "Harry Potter and the Goblet of Fire",
+        "autor": "J. K. Rowling",
+        "paginas": 0,
+        "lido": false
+    },
+    {
+        "id": "6a1f7d569e2e3",
+        "titulo": "Harry Potter and the Prisoner of Azkaban",
+        "autor": "J. K. Rowling",
+        "paginas": 0,
+        "lido": false
+    },
+    {
+        "id": "6a1f7da199b6e",
+        "titulo": "Dom Casmurro",
+        "autor": "Machado de Assis",
+        "paginas": 0,
+        "lido": false
+    },
+    {
+        "id": "6a1f7e8ad65ea",
+        "titulo": "Dom casmurro",
+        "autor": "Machado",
+        "paginas": 0,
+        "lido": false
+    },
+    {
+        "author_key": [
+            "OL7524305A"
+        ],
+        "author_name": [
+            "Kerri Maniscalco"
+        ],
+        "cover_edition_key": "OL27379181M",
+        "cover_i": 8842423,
+        "ebook_access": "no_ebook",
+        "edition_count": 9,
+        "first_publish_year": 2017,
+        "has_fulltext": false,
+        "key": "\/works\/OL19717210W",
+        "language": [
+            "ger",
+            "eng",
+            "spa"
+        ],
+        "public_scan_b": false,
+        "title": "Hunting Prince Dracula",
+        "lido": false
+    },
+    {
+        "author_key": [
+            "OL7524305A"
+        ],
+        "author_name": [
+            "Kerri Maniscalco"
+        ],
+        "cover_edition_key": "OL27379181M",
+        "cover_i": 8842423,
+        "ebook_access": "no_ebook",
+        "edition_count": 9,
+        "first_publish_year": 2017,
+        "has_fulltext": false,
+        "key": "\/works\/OL19717210W",
+        "language": [
+            "ger",
+            "eng",
+            "spa"
+        ],
+        "public_scan_b": false,
+        "title": "Hunting Prince Dracula"
+    },
+    {
+        "id": "6a1f863ab07b5",
+        "titulo": "Draculias",
+        "autor": "eu",
+        "paginas": 90,
+        "lido": true
+    }
+]
