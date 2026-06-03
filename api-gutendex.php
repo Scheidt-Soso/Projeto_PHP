@@ -1,26 +1,25 @@
 <?php
 
-function pesquisarLivroAPI($termo)
+function pesquisarGutendex($termo)
 {
     $url = "https://gutendex.com/books?search=" . urlencode($termo);
 
     $resposta = @file_get_contents($url);
 
     if ($resposta === false) {
-        echo "\nErro ao conectar com a API.\n";
+        echo "\nErro ao conectar com a API Gutendex.\n";
         return [];
     }
-$dados = json_decode($resposta, true);
 
-print_r($dados);
+    $dados = json_decode($resposta, true);
 
-return $dados['results'] ?? [];
+    return $dados['results'] ?? [];
 }
 
-function mostrarResultadosAPI($livros)
+function mostrarResultadosGutendex($livros)
 {
     if (empty($livros)) {
-        echo "\nNenhum livro encontrado.\n";
+        echo "\nNenhum livro encontrado na Gutendex.\n";
         return;
     }
 

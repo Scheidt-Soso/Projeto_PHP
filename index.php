@@ -2,64 +2,98 @@
 
 require_once "menu.php";
 require_once "livros.php";
-require_once "api.php";
+require_once "dados.php";
+require_once "api-gutendex.php";
+require_once "api-OpenL.php";
 
-$livros = [];
+$livros = carregarLivros();
 
 do {
 
     exibirMenu();
 
-    $opcao = trim(fgets(STDIN));
+    $opcao = (int) trim(fgets(STDIN));
 
     switch ($opcao) {
 
         case 1:
 
-            echo "\nDigite o nome do livro: ";
+    echo "\nDigite o nome do livro: ";
+    $pesquisa = trim(fgets(STDIN));
 
-            $pesquisa = trim(fgets(STDIN));
+    $resultados = pesquisarOpenLibrary($pesquisa);
 
-            $resultados = pesquisarLivroAPI($pesquisa);
+    if (empty($resultados)) {
+        echo "\nNenhum livro encontrado.\n";
+        break;
+    }
 
-            mostrarResultadosAPI($resultados);
+    $opcoes = array_slice($resultados, 0, 5);
 
-            break;
+    foreach ($opcoes as $indice => $livro) {
+
+        echo "\n[" . $indice . "] === LIVRO ===\n";
+
+        $titulo = $livro['title'] ?? 'Não informado';
+        $autor = $livro['author_name'][0] ?? 'Autor desconhecido';
+
+        echo "Título: $titulo\n";
+        echo "Autor: $autor\n";
+    }
+
+    echo "\nDigite o número do livro que deseja adicionar à biblioteca: ";
+    $escolha = (int) trim(fgets(STDIN));
+
+    if (!isset($opcoes[$escolha])) {
+        echo "\nOpção inválida.\n";
+        break;
+    }
+
+    $selecionado = $opcoes[$escolha];
+
+    $livros[] = [
+        "titulo" => $selecionado['title'] ?? 'Sem título',
+        "autor" => $selecionado['author_name'][0] ?? 'Desconhecido',
+        "paginas" => 0,
+        "lido" => false
+    ];
+
+    salvarLivros($livros);
+
+    echo "\nLivro adicionado à biblioteca com sucesso!\n";
+
+    break;
 
         case 2:
 
-            echo "\nMinha biblioteca\n";
-
+            minhaBiblioteca($livros);
             break;
 
         case 3:
 
-            echo "\nBuscar livro salvo\n";
-
+            buscarLivro($livros);
             break;
 
         case 4:
 
-            echo "\nEditar livro\n";
-
+            editarLivro($livros);
+            salvarLivros($livros);
             break;
 
         case 5:
 
-            echo "\nRemover livro\n";
-
+            removerLivro($livros);
+            salvarLivros($livros);
             break;
 
         case 6:
 
-            echo "\nEstatísticas\n";
-
+            estatisticas($livros);
             break;
 
         case 0:
 
             echo "\nSaindo...\n";
-
             break;
 
         default:

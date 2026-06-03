@@ -1,4 +1,5 @@
 <?php
+
 function cadastrarLivro(&$livros)
 {
     echo "Título: ";
@@ -19,5 +20,32 @@ function cadastrarLivro(&$livros)
         "nota" => 0
     ];
 
+    salvarLivros($livros);
+
     echo "\nLivro cadastrado com sucesso!\n";
-}?>
+}
+
+function listarLivros($livros)
+{
+    if (empty($livros)) {
+        echo "\nNenhum livro cadastrado.\n";
+        return;
+    }
+
+    usort($livros, function ($a, $b) {
+        return strcmp($a['titulo'], $b['titulo']);
+    });
+
+    foreach ($livros as $livro) {
+
+        echo "\n-------------------\n";
+        echo "ID: {$livro['id']}\n";
+        echo "Título: {$livro['titulo']}\n";
+        echo "Autor: {$livro['autor']}\n";
+        echo "Páginas: {$livro['paginas']}\n";
+        echo "Status: {$livro['status']}\n";
+        echo "Nota: {$livro['nota']}\n";
+    }
+    
+    
+}
